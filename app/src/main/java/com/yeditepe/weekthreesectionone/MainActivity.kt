@@ -33,12 +33,16 @@ import androidx.compose.ui.unit.sp
 import com.yeditepe.weekthreesectionone.ui.theme.GeceOnizleme
 import com.yeditepe.weekthreesectionone.ui.theme.GunduzOnizleme
 import com.yeditepe.weekthreesectionone.ui.theme.WeekThreeSectionOneTheme
+import com.yeditepe.weekthreesectionone.weekseven.TeamCard
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            WeekThreeSectionOneTheme {
+                TeamCard()
 
+            }
         }
     }
 }
@@ -49,10 +53,13 @@ fun SurveyAnswer(answer: Answer ){
     var selected = remember {
         mutableStateOf(false)
     }
-    Row(modifier= Modifier.fillMaxWidth()
-        .padding(all=5.dp)
-        .background(color = MaterialTheme.colorScheme.secondary,
-            shape= RoundedCornerShape(5.dp)),
+    Row(modifier= Modifier
+        .fillMaxWidth()
+        .padding(all = 5.dp)
+        .background(
+            color = MaterialTheme.colorScheme.secondary,
+            shape = RoundedCornerShape(5.dp)
+        ),
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
 

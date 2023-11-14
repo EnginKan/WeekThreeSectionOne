@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WeekThreeSectionOne</string>
+    <string name="IncrementButton">+1 </string>
+    <string name="teamA">Team: %s</string>
 </resources>
