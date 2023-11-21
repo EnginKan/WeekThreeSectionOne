@@ -18,10 +18,18 @@ class ScoreViewModel(): ViewModel() {
         get() = _scoreCard.asStateFlow()
 
     fun updateScore(isteamA: Boolean){
+        val scoreA= _scoreCard.value.scoreTeam1
+        val scoreB = _scoreCard.value.scoreTeam2
+
         _scoreCard.update {
-        if(isteamA)
-            it.scoreTeam1.inc()
-        else
-            it.scoreTeam2.inc()
-    }
+            card->
+            if(isteamA)
+                card.copy(scoreTeam1 = scoreA+1)
+            else
+                card.copy(scoreTeam2 = scoreB+1)
+        }
+
+        }
+
+
 }

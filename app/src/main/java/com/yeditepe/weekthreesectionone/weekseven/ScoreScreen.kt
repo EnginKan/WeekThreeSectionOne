@@ -58,7 +58,8 @@ fun TeamCard(scoreCardModel :ScoreViewModel= viewModel()){
             modifier = Modifier.fillMaxWidth()
         ) {
             Row (
-                horizontalArrangement = Arrangement.Center
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
                     ){
                 TeamScore(teamname = scoreUIState.teamname1,
                     score = scoreUIState.scoreTeam1.toString(),
