@@ -33,11 +33,11 @@ import com.yeditepe.weekthreesectionone.ui.theme.WeekThreeSectionOneTheme
 @Composable
 fun BookLineItem(bookItem: Book,
                  controller: NavHostController,
-                 onClick: ()->Unit){
+                 ){
     Row(modifier = Modifier
         .fillMaxWidth()
         .background(color = MaterialTheme.colorScheme.primaryContainer)
-        .clickable { onClick }) {
+        .clickable { controller.navigate("bookdetailsbookdetails2?id=${bookItem.id}") }) {
         Text(text = bookItem.title,
         style=MaterialTheme.typography.headlineMedium)
         Text(text = bookItem.author,
@@ -53,12 +53,7 @@ controller: NavHostController
     LazyColumn(){
         items(uiState){
             book->
-            BookLineItem(bookItem = book, controller = controller) {
-                val route="bookdetails/${book.id}"
-                Log.d("LineItem",route)
-                controller.navigate(route)
-                
-            }
+            BookLineItem(bookItem = book, controller = controller)
         }
     }
     
@@ -100,7 +95,7 @@ fun BookMainScreen(controller: NavHostController = rememberNavController()){
 
         }
         composable(
-            "bookdetails/{id}",
+            "bookdetails?id={id}",
             arguments = listOf(navArgument("id"){type= NavType.IntType}
         ) )
         { stack ->
@@ -110,6 +105,20 @@ fun BookMainScreen(controller: NavHostController = rememberNavController()){
                 bookId = stack.arguments!!.getInt("id", 0),
                 controller = controller
             )
+        }
+        composable(
+            "bookdetails2?id={id}",
+            arguments = listOf(navArgument("id"){defaultValue="0"}
+            ) )
+        { stack ->
+            val bookid= stack.arguments?.getString("id")
+            val id = bookid?.toInt()
+            id?.let {
+                BookDetailScreen(
+                    bookId = it,
+                    controller = controller
+                )
+            }
         }
 
     }

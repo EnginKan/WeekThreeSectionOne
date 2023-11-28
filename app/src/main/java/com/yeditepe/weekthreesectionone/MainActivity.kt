@@ -1,5 +1,6 @@
 package com.yeditepe.weekthreesectionone
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.media.Image
 import android.os.Bundle
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
@@ -26,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,7 +43,36 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WeekThreeSectionOneTheme {
-                TeamCard()
+                Column {
+                    Text(text = "Activity One")
+                    Button(onClick = {
+                        //Explicit Intent one
+                        /*Intent(this@MainActivity,
+                            SecondActivity::class.java)
+                            .also{
+                                startActivity(it)
+                                                    }*/
+                        /*Intent(Intent.ACTION_MAIN).also{
+                           try {
+                               it.`package` = "com.google.android.youtube"
+                               startActivity(it)
+                           }
+                           catch (e: ClassNotFoundException){
+                               e.printStackTrace()
+                           }
+                        }*/
+                        //Implicit Intent
+                        Intent(Intent.ACTION_SEND).apply{
+                            type="text/plain"
+                            putExtra(Intent.EXTRA_EMAIL,"engin.kandiran@gmail.com")
+                            putExtra(Intent.EXTRA_TITLE,"Subject of Email")
+                            putExtra(Intent.EXTRA_SUBJECT,"Content")
+                        }
+                    }) {
+                        Text(text = "Second Activity")
+
+                    }
+                }
 
             }
         }
